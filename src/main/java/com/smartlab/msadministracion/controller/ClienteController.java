@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/clientes")
@@ -23,4 +25,20 @@ public class ClienteController {
                 .status(HttpStatus.CREATED)
                 .body(clienteService.crearCliente(requestCliente, username));
     }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDto> obtenerCliente(@PathVariable Long id) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(clienteService.obtenerCliente(id).get());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteDto>> obtenerTodos () {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(clienteService.obtenerTodos());
+    }
+
 }

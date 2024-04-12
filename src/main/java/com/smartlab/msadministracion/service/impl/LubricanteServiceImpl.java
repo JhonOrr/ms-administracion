@@ -24,6 +24,7 @@ public class LubricanteServiceImpl implements LubricanteService {
     @Override
     public LubricanteDto crearLubricante(RequestLubricante requestLubricante, String username) {
         LubricanteEntity lubricanteCreado = obtenerLubricanteCreado(requestLubricante, username);
+        lubricanteRepository.save(lubricanteCreado);
         return lubricanteMapper.mapToDto(lubricanteCreado);
     }
 
